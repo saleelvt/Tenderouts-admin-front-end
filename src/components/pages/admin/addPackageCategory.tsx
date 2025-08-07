@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
+import { addCategoryAction } from "../../../reduxKit/actions/admin/addCategoryAction";
 
 type CategoryType = "Normal" | "Premium" | "Luxury";
 
@@ -21,7 +23,6 @@ const AdminCategoryPriceForm: React.FC = () => {
     maxAdults: 1,
   });
   const [loading, setLoading] = useState(false);
-
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, categoryType: e.target.value as CategoryType }));
   };
@@ -54,11 +55,22 @@ const AdminCategoryPriceForm: React.FC = () => {
     setLoading(true);
 
     // Simulate async submission
-    await new Promise((r) => setTimeout(r, 1000));
-
     console.log("Submitted Data:", formData);
+    try {
+         const response = await addCategoryAction(formData)
+     console.log(response);
+     
 
     setLoading(false);
+
+    } catch (error:any) {
+
+        console.log("error while adding the package ",error);
+        
+        
+    }
+
+   
   };
 
   return (

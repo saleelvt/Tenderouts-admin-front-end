@@ -7,27 +7,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const axiosIn = axios.create({
     baseURL: URL,
   });
-  
-  interface CategoryFormData {
-  categoryType: string;
+
+  type CategoryType = "Normal" | "Premium" | "Luxury";
+
+interface FormData {
+  categoryType: CategoryType;
   adultCount: number;
   childCount: number;
   adultPrice: number;
   childPrice: number;
   maxAdults: number;
 }
+  
 
-
-  export const addDocument= createAsyncThunk(
+  export const addCategoryAction= createAsyncThunk(
     "admin/addDocument",
-    async (adminCredentials:CategoryFormData,{rejectWithValue})=>{
+    async (Datas:FormData,{rejectWithValue})=>{
         try {
-            console.log(
-              "this is for add the document ",
-              adminCredentials
-            );
- 
-            const response = await axiosIn.post(`/admin/addDocument`, adminCredentials,config);
+            console.log("this is for add category ",Datas);
+            const response = await axiosIn.post(`/admin/addPackage`, Datas,config);
             return response.data ;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {
