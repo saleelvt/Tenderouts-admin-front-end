@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { addCategoryAction } from "../../../reduxKit/actions/admin/addCategoryAction";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../reduxKit/store";
+import toast from "react-hot-toast";
 
 type CategoryType = "Normal" | "Premium" | "Luxury";
 
@@ -10,17 +13,16 @@ interface FormData {
   childCount: number;
   adultPrice: number;
   childPrice: number;
-  maxAdults: number;
 }
 
 const AdminCategoryPriceForm: React.FC = () => {
+    const dispatch=useDispatch<AppDispatch>()
   const [formData, setFormData] = useState<FormData>({
     categoryType: "Normal",
     adultCount: 1,
     childCount: 1,
     adultPrice: 0,
     childPrice: 0,
-    maxAdults: 1,
   });
   const [loading, setLoading] = useState(false);
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,14 +38,14 @@ const AdminCategoryPriceForm: React.FC = () => {
     }));
   };
 
-  const increment = (field: "adultCount" | "childCount" | "maxAdults") => {
+  const increment = (field: "adultCount" | "childCount" ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: prev[field] + 1,
     }));
   };
 
-  const decrement = (field: "adultCount" | "childCount" | "maxAdults") => {
+  const decrement = (field: "adultCount" | "childCount" ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: prev[field] > 0 ? prev[field] - 1 : 0,
@@ -55,22 +57,17 @@ const AdminCategoryPriceForm: React.FC = () => {
     setLoading(true);
 
     // Simulate async submission
-    console.log("Submitted Data:", formData);
     try {
-         const response = await addCategoryAction(formData)
-     console.log(response);
-     
-
+        console.log("Submitted Data:", formData);
+         const response = await dispatch(addCategoryAction(formData)).unwrap()
+         if(response.success){
+          toast.success(response.message)
+         }
+     console.log("my respose of the data ",response);
     setLoading(false);
-
     } catch (error:any) {
-
         console.log("error while adding the package ",error);
-        
-        
     }
-
-   
   };
 
   return (
@@ -175,28 +172,7 @@ const AdminCategoryPriceForm: React.FC = () => {
       </label>
 
       {/* Max Adults */}
-      <label className="block">
-        <span className="text-black font-medium mb-1 block">Max Adults</span>
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={() => decrement("maxAdults")}
-            className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition"
-            aria-label="Decrease max adults"
-          >
-            -
-          </button>
-          <span className="text-black text-xl font-semibold">{formData.maxAdults}</span>
-          <button
-            type="button"
-            onClick={() => increment("maxAdults")}
-            className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition"
-            aria-label="Increase max adults"
-          >
-            +
-          </button>
-        </div>
-      </label>
+   
       {/* Submit Button */}
       <button
         type="submit"

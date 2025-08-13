@@ -11,7 +11,7 @@ export const URL="http://localhost:5555";
 
 export const config ={
     headers :{
-        "Content-Type":"multipart/form-data",
+        "Content-Type": "application/json",
     },
     withCredentials:true
 }
