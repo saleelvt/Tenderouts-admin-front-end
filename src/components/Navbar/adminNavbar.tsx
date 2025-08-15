@@ -13,6 +13,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { adminLogout } from "../../reduxKit/actions/auth/authAction";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reduxKit/store";
+import { FaArrowCircleLeft } from "react-icons/fa";
 
 
 export const AdminNavbar: React.FC = () => {
@@ -45,9 +46,13 @@ export const AdminNavbar: React.FC = () => {
   return (
     <nav className="p-3">
       <div className="container py-2 mx-auto gap-3 flex justify-between items-center">
-        <div className="w-full flex items-center justify-between ">
+        <div className="w-full  flex items-center gap-20 ">
+           <FaArrowCircleLeft
+              className="text-3xl  items-center text-black-500"
+              onClick={() => navigate("/")}
+            />
           <h1 className=" font-semibold xs:font-bold lg:text-4xl md:text-2xl sm:1xl xs:text-2xl ">
-            TendeRoute{" "}
+            TendeRoutes{" "}
           </h1>
         </div>
         <div

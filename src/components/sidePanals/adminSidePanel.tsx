@@ -2,7 +2,6 @@ import  { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 
-
 import {
   FaBars,
   FaHome,
@@ -13,7 +12,7 @@ import {
   FaFileAlt 
 } from "react-icons/fa";
 
-const AdminSidebar = () => {
+const AdminSidebar = () => { 
   const [isOpen, setIsOpen] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -25,14 +24,14 @@ const AdminSidebar = () => {
     { to: "/adminCategoryPackageList", icon: FaListAlt, label: "Package List" },
     { to: "/adminAddDayWisePackage", icon: FaFileAlt, label: "Add Day Wise Package " },
     { to: "/adminDayWisePackageList", icon: FaListAlt, label: "Day Wise Package List" },
-    { to: "/admin/profile", icon: FaUser, label: "Profile" },
+    { to: "/admin/profile", icon: FaUser, label: "Profile" }, 
     { to: "/admin/settings", icon: FaCog, label: "Settings" }
   ];
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
-      <aside 
+      <a
         className={`bg-white fixed lg:static h-screen shadow-lg transition-all duration-300 z-20
           ${isOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full lg:w-64 lg:translate-x-0'}
         `}
@@ -78,7 +77,7 @@ const AdminSidebar = () => {
             </NavLink>
           ))}
         </nav>
-      </aside>
+      </a>
 
 
       {/* Backdrop for mobile */}

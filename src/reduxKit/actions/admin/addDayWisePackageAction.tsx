@@ -8,25 +8,29 @@ export const axiosIn = axios.create({
     baseURL: URL,
   });
 
-  type HotelCategory = "Normal" | "Premium" | "Luxury";
+ type HotelCategory = "Normal" | "Premium" | "Luxury";
+
 interface Activity {
-  title: string;
-  description?: string;
-  time?: string;
+  day: number;
+  destination: string;
+  description: string;
+  time: string;
+  imageUrl: string;
 }
 
 interface Hotel {
   name: string;
+  location: string;
   category: HotelCategory;
 }
 
 interface FormData {
   packageId: string;
   dayNumber: number;
-  destination: string;
   activities: Activity[];
-  images: string[];
   hotels: Hotel[];
+  priceIncludes: string[];
+  priceExcludes: string[];
 }
 
   export const AdminAddDayWisePackageAction= createAsyncThunk(

@@ -16,7 +16,10 @@ interface FormData {
   childCount: number;
   adultPrice: number;
   childPrice: number;
+  packageName:string;
+  description:string;
 }
+
 
   export const addCategoryAction= createAsyncThunk(
     "admin/addPackage",
@@ -34,3 +37,38 @@ interface FormData {
           }
     }
   )
+    export const admingGetPackages= createAsyncThunk(
+    "admin/admingGetPackages",
+    async (_,{rejectWithValue})=>{
+        try {
+            const response = await axiosIn.get(`/admin/getPackages`,config);
+            return response.data;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } catch (error: any) {
+            if (error.response) {
+              return rejectWithValue(error.response.data);
+            }
+            return rejectWithValue({ message: "Something went wrong!" });
+          }
+    }
+  )
+
+
+  export const deleteCategoryAction= createAsyncThunk(
+    "admin/deletePackage",
+    async (id:string,{rejectWithValue})=>{
+        try {
+            console.log("before delete the package ",id);
+            const response = await axiosIn.delete(`/admin/deletePackage/${id}`,config);
+            return response.data;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } catch (error: any) {
+            if (error.response) {
+              return rejectWithValue(error.response.data);
+            }
+            return rejectWithValue({ message: "Something went wrong!" });
+          }
+    }
+  )
+
+

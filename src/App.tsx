@@ -9,6 +9,7 @@ import { AdminLogin } from './components/forms/admin/login';
 import AdminHomePage from './components/pages/admin/adminDashBoard';
 import AdminCategoryPriceForm from './components/pages/admin/addPackageCategory';
 import AdminDayWiseDetailsForm from './components/pages/admin/adminAddDayWisePackage';
+import AdminCategoryPackageList from './components/pages/admin/packageLIst';
 
 import { useSelector } from 'react-redux';
 import { RootState } from './reduxKit/store';
@@ -27,6 +28,7 @@ export const App: React.FC = React.memo(() => {
           <Route path="/" element={isLogged && role === 'admin' ? <Navigate to="/adminHomepage" /> : <AdminLogin />} />
           <Route path="/adminHomepage" element={isLogged && role === 'admin' ? <AdminHomePage /> : <AdminLogin />} />
           <Route path="/adminAddCategoryPackage" element={isLogged && role === 'admin' ? <AdminCategoryPriceForm /> : <AdminLogin />} />
+          <Route path="/adminCategoryPackageList" element={isLogged && role === 'admin' ? <AdminCategoryPackageList /> : <AdminLogin />} />
           <Route path="/adminAddDayWisePackage" element={isLogged && role === 'admin' ? <AdminDayWiseDetailsForm /> : <AdminLogin />} />
     
         </Routes>

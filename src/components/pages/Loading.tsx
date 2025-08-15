@@ -15,4 +15,4 @@ export const Loading: React.FC = () => {
     </div>
   </div>
   );
-};
+}; 
