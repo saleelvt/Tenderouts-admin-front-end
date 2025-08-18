@@ -205,7 +205,7 @@ const AdminDayWiseDetailsForm: React.FC = () => {
       }
       return { ...prev, priceIncludes: updated };
     });
-  };
+  }; 
 
   const handlePriceExcludeChange = (index: number, value: string) => {
     setFormData(prev => {
