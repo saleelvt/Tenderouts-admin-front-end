@@ -1,6 +1,7 @@
 
 
-export const URL="http://localhost:5555"; 
+// export const URL="http://localhost:5555"; 
+export const URL="https://tenderouts-back-end.onrender.com";
 
  export const createAxiosConfig = (isFileUpload = false) => ({
     headers: {
