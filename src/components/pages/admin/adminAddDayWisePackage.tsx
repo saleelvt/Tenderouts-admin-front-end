@@ -47,7 +47,7 @@ const AdminDayWiseDetailsForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     packageId: "",
     dayNumber: 5,
-    activities: [],
+    activities: [], 
     hotels: [{ name: "", location: "", category: "Normal" }],
     priceIncludes: [""],
     priceExcludes: [""],
@@ -92,45 +92,7 @@ const AdminDayWiseDetailsForm: React.FC = () => {
     setFormData(prev => ({ ...prev, activities: newActivities }));
   }, [formData.dayNumber]);
 
-  // Validation helper - ensure all required fields for activities
-  const validateForm = () => {
-    if (!formData.packageId) {
-      toast.error("Please select a Package ID.");
-      return false;
-    }
-    if (
-      formData.activities.some(
-        act =>
-          !act.destination.trim() ||
-          !act.description.trim() ||
-          !act.time.trim() ||
-          !act.imageUrl.trim()
-      )
-    ) {
-      toast.error(
-        "Please fill all fields in all activities (day destination, description, time, image URL)."
-      );
-      return false;
-    }
-    if (
-      formData.hotels.some(
-        hotel =>
-          !hotel.name.trim() || !hotel.location.trim() || !hotel.category.trim()
-      )
-    ) {
-      toast.error("Please fill all hotel fields (name, location, category).");
-      return false;
-    }
-    if (formData.priceIncludes.some(item => !item.trim())) {
-      toast.error("Please fill all 'Price Includes' points.");
-      return false;
-    }
-    if (formData.priceExcludes.some(item => !item.trim())) {
-      toast.error("Please fill all 'Price Excludes' points.");
-      return false;
-    }
-    return true;
-  };
+
 
   // Handlers
   const handleChange = (
@@ -229,31 +191,16 @@ const AdminDayWiseDetailsForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    // if (!validateForm()) return;
     setSubmitting(true);
     try {
-      const res = await dispatch(AdminAddDayWisePackageAction(formData)).unwrap();
-      if (res.success) {
-        toast.success(res.message);
-        setFormData({
-          packageId: "",
-          dayNumber: 5,
-          activities: Array(5)
-            .fill(null)
-            .map((_, i) => ({
-              day: i + 1,
-              destination: "",
-              description: "",
-              time: "",
-              imageUrl: "",
-            })),
-          hotels: [{ name: "", location: "", category: "Normal" }],
-          priceIncludes: [""],
-          priceExcludes: [""],
-        });
+      const res = await dispatch(AdminAddDayWisePackageAction(formData)).unwrap()
+      if(res.success){
+toast.success(res.message)
       }
+     
     } catch (error: any) {
-      toast.error(error?.message || "Failed to add day-wise package.");
+      toast.error( error.mes||"Failed to add day-wise package.");
     } finally {
       setSubmitting(false);
     }

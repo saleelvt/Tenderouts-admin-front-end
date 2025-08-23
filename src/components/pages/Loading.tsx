@@ -13,6 +13,6 @@ export const Loading: React.FC = () => {
         Please wait, your content is on the way.
       </p>
     </div>
-  </div>
+  </div> 
   );
 }; 

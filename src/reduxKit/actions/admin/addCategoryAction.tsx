@@ -8,16 +8,24 @@ export const axiosIn = axios.create({
     baseURL: URL,
   });
 
-type CategoryType = "Normal" | "Premium" | "Luxury";
+interface Prices {
+  adult: number;
+  child: number;
+}
+
+interface Categories {
+  Normal: Prices;
+  Premium: Prices;
+  Luxury: Prices;
+}
 
 interface FormData {
-  categoryType: CategoryType;
-  adultCount: number;
-  childCount: number;
-  adultPrice: number;
-  childPrice: number;
-  packageName:string;
-  description:string;
+  packageName: string;
+  description: string;
+  categories: Categories;
+  adultCount: number; // always 1
+  childCount: number; // always 1
+  imageUrl: string;
 }
 
 

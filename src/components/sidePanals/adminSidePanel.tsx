@@ -24,7 +24,7 @@ const AdminSidebar = () => {
     { to: "/adminCategoryPackageList", icon: FaListAlt, label: "Package List" },
     { to: "/adminAddDayWisePackage", icon: FaFileAlt, label: "Add Day Wise Package " },
     { to: "/adminDayWisePackageList", icon: FaListAlt, label: "Day Wise Package List" },
-    { to: "/admin/profile", icon: FaUser, label: "Profile" }, 
+    { to: "/admin/profile", icon: FaUser, label: "Profile" },  
     { to: "/admin/settings", icon: FaCog, label: "Settings" }
   ];
 

@@ -10,6 +10,7 @@ import AdminHomePage from './components/pages/admin/adminDashBoard';
 import AdminCategoryPriceForm from './components/pages/admin/addPackageCategory';
 import AdminDayWiseDetailsForm from './components/pages/admin/adminAddDayWisePackage';
 import AdminCategoryPackageList from './components/pages/admin/packageLIst';
+import AdminDayWisePackageList from './components/pages/admin/adminDayWisePackageList';
 
 import { useSelector } from 'react-redux';
 import { RootState } from './reduxKit/store';
@@ -30,6 +31,7 @@ export const App: React.FC = React.memo(() => {
           <Route path="/adminAddCategoryPackage" element={isLogged && role === 'admin' ? <AdminCategoryPriceForm /> : <AdminLogin />} />
           <Route path="/adminCategoryPackageList" element={isLogged && role === 'admin' ? <AdminCategoryPackageList /> : <AdminLogin />} />
           <Route path="/adminAddDayWisePackage" element={isLogged && role === 'admin' ? <AdminDayWiseDetailsForm /> : <AdminLogin />} />
+          <Route path="/adminDayWisePackageList" element={isLogged && role === 'admin' ? <AdminDayWisePackageList /> : <AdminLogin />} />
     
         </Routes>
       </Suspense>
