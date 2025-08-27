@@ -1,7 +1,7 @@
 
 
 // export const URL="http://localhost:5555"; 
-export const URL="http://api.tenderoutes.com";
+export const URL="https://api.tenderoutes.com";
 
  export const createAxiosConfig = (isFileUpload = false) => ({
     headers: {
